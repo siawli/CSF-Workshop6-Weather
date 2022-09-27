@@ -22,6 +22,8 @@ export class AppComponent implements OnInit {
     feelsLike: 0
   }
 
+  countries: string[] = [];
+
   constructor(private fb: FormBuilder, private weatherSvc: WeatherService) { }
 
   ngOnInit(): void {
@@ -35,35 +37,38 @@ export class AppComponent implements OnInit {
   }
 
   processForm() {
-    const city = this.form.get("city")?.value;
-    // console.info(">>>>>> city: " + city);
-    this.weatherSvc.getWeather(city)
-      .then(result => {
-        // console.info(">>>>> result: " + JSON.stringify(result))
-        const weatherArr = result.weather;
-        // console.info(">>>>> weatherArr: " + JSON.stringify(weatherArr))
-
-          weatherArr.map((v: any) => {
-            // console.info(">>>> JsonObj in JsonArr: " + JSON.stringify(v))
-            // console.info(">>> main: " + JSON.stringify(v.main))
-            // this.cityWeather.main = JSON.stringify(v.main)
-            this.cityWeather.main = v.main;
-            // console.info(">>>>> cityWeatherMain: " + this.cityWeather.main)
-            this.cityWeather.description = v.description;
-            this.cityWeather.icon = v.icon;
-          })
-            const mainObj = result.main;
-            this.cityWeather.temp = mainObj.temp;
-            this.cityWeather.feelsLike = mainObj.feels_like;
-            this.cityWeather.city = city;
-
-            this.weatherSvc.getWeahterSub.next(this.cityWeather);
-      })
-      .catch(error => {
-        console.info(error);
-      })
-      this.form.reset();
+    const city = this.form.get("city")?.value
+    this.countries = [...this.countries, city]
   }
 
-  
+  // processForm() {
+  //   const city = this.form.get("city")?.value;
+  //   // console.info(">>>>>> city: " + city);
+  //   this.weatherSvc.getWeather(city)
+  //     .then(result => {
+  //       // console.info(">>>>> result: " + JSON.stringify(result))
+  //       const weatherArr = result.weather;
+  //       // console.info(">>>>> weatherArr: " + JSON.stringify(weatherArr))
+
+  //         weatherArr.map((v: any) => {
+  //           // console.info(">>>> JsonObj in JsonArr: " + JSON.stringify(v))
+  //           // console.info(">>> main: " + JSON.stringify(v.main))
+  //           // this.cityWeather.main = JSON.stringify(v.main)
+  //           this.cityWeather.main = v.main;
+  //           // console.info(">>>>> cityWeatherMain: " + this.cityWeather.main)
+  //           this.cityWeather.description = v.description;
+  //           this.cityWeather.icon = v.icon;
+  //         })
+  //           const mainObj = result.main;
+  //           this.cityWeather.temp = mainObj.temp;
+  //           this.cityWeather.feelsLike = mainObj.feels_like;
+  //           this.cityWeather.city = city;
+
+  //           this.weatherSvc.getWeahterSub.next(this.cityWeather);
+  //     })
+  //     .catch(error => {
+  //       console.info(error);
+  //     })
+  //     this.form.reset();
+  // }  
 }
