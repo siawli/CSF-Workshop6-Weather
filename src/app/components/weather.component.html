@@ -1,0 +1,23 @@
+<div class="container" *ngIf="cityWeather.city.length > 0">
+    <h3>{{ cityWeather.city }}</h3>
+    <div>
+        <table>
+            <tr>
+                <td>Main:</td>
+                <td>{{ cityWeather.main }}</td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td>{{ cityWeather.description }}</td>
+            </tr>
+            <tr>
+                <td>Temp:</td>
+                <td>{{ cityWeather.temp }}</td>
+            </tr>
+            <tr>
+                <td>Feels like:</td>
+                <td>{{ cityWeather.feelsLike }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
