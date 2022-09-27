@@ -1,0 +1,15 @@
+<div class="center">
+  <h1>City Weather</h1>
+  <form [formGroup]="form" (ngSubmit)="processForm()">
+    <input type="text" placeholder="Add city..." formControlName="city">
+    <button type="submit" [disabled]="form.invalid">Add</button>
+  </form>
+</div>
+
+<div class="center countries">
+    <table>
+        <tr *ngFor="let c of countries">
+            <td><a [routerLink] = "['/weather', c]">{{ c }}</a></td>
+        </tr>
+    </table>
+</div>
